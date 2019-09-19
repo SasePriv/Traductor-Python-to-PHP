@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="style.css" />
+<link href="script.js" />
+
+<head>
+    <meta charset="UTF-8">
+    <title>Traductor de Programas</title>
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&amp;display=swap" rel="stylesheet">
+    <script src="codemirror-5.48.0/lib/codemirror.js"></script>
+    <link href="codemirror-5.48.0/lib/codemirror.css" rel="stylesheet" />
+    <link href="codemirror-5.48.0/theme/dracula.css" rel="stylesheet" />
+    <link href="codemirror-5.48.0/theme/base16-dark.css" rel="stylesheet" />
+    <script src="codemirror-5.48.0/mode/python/python.js"></script>
+    <script src="codemirror-5.48.0/mode/javascript/javascript.js"></script>
+
+    <script>
+        function tokenizar() {
+
+            'use strict';
+            const Lex = require('lexical-parser');
+            let input = document.getElementById("editor2").value;
+            console.log(document.getElementById("editor2").value);
+            let tokenMatchers = [
+                'if',
+                'break',
+                'or',
+                'def',
+                'del',
+                'else',
+                'elif',
+                'not',
+                'continue',
+                'in',
+                'try',
+                'exec',
+                'print',
+                'raise',
+                'lambda',
+                'class',
+                'import',
+                'yield',
+                'assert',
+                'except',
+                'for',
+                '+',
+                '-',
+                '*',
+                '**',
+                '%',
+                '/',
+                '//',
+                '{',
+                '}',
+                '(',
+                ')',
+                '<',
+                '>',
+                '=',
+                '&&',
+                'int',
+                ['integer', /[0-9]+/],
+                ['id', /[a-zA-Z][a-zA-Z0-9]*/],
+                ['string', /\".*?\"/]
+            ];
+            let ignorePattern = '[\n\s \t]+';
+            let lex = new Lex(input, tokenMatchers, ignorePattern);
+            let token = undefined;
+            try {
+                do {
+                    token = lex.nextToken()
+                    console.log(token)
+                } while (token)
+            } catch (err) {
+
+                if (err.code === "LEXICAL_ERROR") {
+                    console.log(`\n${err.message}\n`)
+                    console.log(`Position: ${err.position}`)
+                    console.log(`Character: ${err.character}`)
+                    console.log(`Nearby code: ${err.nearbyCode}`)
+                }
+                else
+                    console.log(err)
+            }
+
+        }
+    </script>
+</head>
+
+
+<div class="caja">
+    <H2> Python </H2>
+    <textarea id="editor2">asdasds</textarea>
+    <script>
+        var editor2 = CodeMirror.fromTextArea
+            (document.getElementById("editor2"), {
+                mode: "python",
+                theme: "dracula",
+                lineNumbers: true
+            });
+        editor2.setSize("500", "500");
+        console.log(document.getElementById("editor2").value);
+    </script>
+</div>
+
+
+<button class="button" value="Traducir" onclick="tokenizar">Traducir</button>
+
+<div class="caja1">
+    <H1> Script </H1>
+    <textarea id="editor"></textarea>
+    <script>
+        var editor = CodeMirror.fromTextArea
+            (document.getElementById("editor"), {
+                mode: "javascript",
+                theme: "dracula",
+                lineNumbers: true
+            });
+        editor.setSize("500", "500");
+    </script>
+</div>
+
+<div class="console">
+    <textarea id="Consola">Shell:</textarea>
+    <script>
+        var Consola = CodeMirror.fromTextArea
+            (document.getElementById("Consola"), {
+                theme: "base16-dark"
+            });
+        Consola.setSize("300", "500");
+    </script>
+</div>
+
+
+</html>
