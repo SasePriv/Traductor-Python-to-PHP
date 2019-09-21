@@ -19,15 +19,16 @@
 </head>
 
 <body class="container-fluid">
+
     <!-- Primera fila -->
     <div class="row">
         <div class="col text-center">
             <h1 class="display-4 titulo"> Python </H2>
         </div>
         <div class="col text-center">
-            <button class="btn btn-primary button" value="Traducir" onclick="tokenizar">Traducir</button>
+            <button class="btn btn-primary button" value="Traducir" onclick="traducir()">Traducir</button>
         </div>
-        <div class="col text-center">
+        <div class=" col text-center">
             <h1 class="display-4 titulo"> Script </H1>
         </div>
     </div>
@@ -36,49 +37,26 @@
     <div class="row mt-5">
         <div class="col">
             <div class="caja">
-                <textarea id="editor2">asdasds</textarea>
-                <script>
-                    var editor2 = CodeMirror.fromTextArea
-                        (document.getElementById("editor2"), {
-                            mode: "python",
-                            theme: "dracula",
-                            lineNumbers: true
-                        });
-                    editor2.setSize("100%", "100%");
-                    console.log(document.getElementById("editor2").value);
-                </script>
+                <textarea id="editor1"></textarea>
             </div>
         </div>
 
         <div class="col">
             <div class="console caja">
                 <textarea id="Consola">Shell:</textarea>
-                <script>
-                    var Consola = CodeMirror.fromTextArea
-                        (document.getElementById("Consola"), {
-                            theme: "base16-dark"
-                        });
-                    Consola.setSize("100%", "100%");
-                </script>
             </div>
         </div>
 
         <div class="col">
             <div class="caja">
-                <textarea id="editor"></textarea>
-                <script>
-                    var editor = CodeMirror.fromTextArea
-                        (document.getElementById("editor"), {
-                            mode: "javascript",
-                            theme: "dracula",
-                            lineNumbers: true
-                        });
-                    editor.setSize("100%", "100%");
-                </script>
+                <textarea id="editor2"></textarea>
             </div>
         </div>
     </div>
 
+    <!-- Scripts -->
+    <script src="bundle.js"></script>
+    <!-- <script src="main.js"></script> -->
 </body>
 
 </html>
