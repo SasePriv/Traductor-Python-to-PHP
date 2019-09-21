@@ -1,5 +1,3 @@
-
-
 // Configuracion de los editores de codemirror
 //Editor 1
 var editor1 = CodeMirror.fromTextArea
@@ -17,6 +15,7 @@ var consola = CodeMirror.fromTextArea
         readOnly: true
     });
 consola.setSize("100%", "100%");
+consola.setValue("Shell:\n")
 
 //Editor 2
 var editor2 = CodeMirror.fromTextArea
@@ -28,9 +27,18 @@ var editor2 = CodeMirror.fromTextArea
     });
 editor2.setSize("100%", "100%");
 
-//Funcion de boton de traducir
+//Funcion traducir que hasta ahora solamente genera los tokens y los muestra en la pantalla shell
+function traducir() {
+    let exmaple = editor1.getValue();
+    tokens = generaTokens(exmaple, tokens);
+    mostrarTokens(tokens);
+}
+document.getElementById("tradu").onclick = function () { traducir() };
+
+//Analisador Lexico
 
 const moo = require('moo');
+let tokens;
 
 var lexer = moo.compile({
     WS: /[ \t]+/,
@@ -43,25 +51,21 @@ var lexer = moo.compile({
     NL: { match: /\n/, lineBreaks: true },
 });
 
-let exmaple = "while (10) cows\nmoo";
-
-lexer.reset(exmaple);
-
-let tokens = Array.from(lexer);
-
-for (let i = 0; i < tokens.length; i++) {
-    console.log(tokens[i]);
+function generaTokens(texto) {
+    lexer.reset(texto);
+    return Array.from(lexer);
 }
 
-// console.log(lexer.has());
+function mostrarTokens(tokens) {
+    for (let i = 0; i < tokens.length; i++) {
+        let test = consola.getValue();
+        test = test + JSON.stringify(tokens[i]) + "\n";
+        consola.setValue(test);
+    }
+}
 
-// console.log(lexer.next());
-// console.log(lexer.next());
-// console.log(lexer.next());
-// console.log(lexer.next());
-// console.log(lexer.next());
-// console.log(lexer.next());
-// console.log(lexer.next());
-// console.log(lexer.next());
-// console.log(lexer.next());
-// console.log(lexer.next());
+
+
+
+
+
