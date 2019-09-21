@@ -1,0 +1,26 @@
+{
+  "name": "traductor_python_php",
+  "version": "1.0.0",
+  "description": "Traductor de python a php para la universidad",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SasePriv/Traductor-Python-to-PHP.git"
+  },
+  "keywords": [
+    "prueba"
+  ],
+  "author": "Luis Sanchez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SasePriv/Traductor-Python-to-PHP/issues"
+  },
+  "homepage": "https://github.com/SasePriv/Traductor-Python-to-PHP#readme",
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "codemirror": "^5.49.0"
+  }
+}
