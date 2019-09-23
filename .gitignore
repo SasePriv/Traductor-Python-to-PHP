@@ -2,4 +2,4 @@
 # dependencies
 /codemirror-5.48.0
 /node_modules
-local.js
+js/local.js
