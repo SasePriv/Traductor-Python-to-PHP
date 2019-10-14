@@ -24,6 +24,7 @@
     "browserify": "^16.5.0",
     "canto34": "^2.0.1",
     "codemirror": "^5.49.0",
+    "fs": "0.0.1-security",
     "watchify": "^3.11.1"
   }
 }
